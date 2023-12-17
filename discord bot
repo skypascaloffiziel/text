@@ -1,0 +1,58 @@
+import discord
+from discord.ext import commands
+
+class SupportBot(commands.Bot):
+    def __init__(self):
+        super().__init__(command_prefix="!")
+
+        self.help_command = commands.HelpCommand(no_category="Support")
+
+        @self.event
+        async def on_ready():
+            print("Bot ist bereit.")
+
+        @self.command(name="help")
+        async def help(self, ctx):
+            await ctx.send(f"```
+Hilfe für den Support-Bot
+
+**Allgemeine Fragen**
+
+* {self.prefix}hilfe: Zeigt diese Hilfe an.
+* {self.prefix}info: Zeigt Informationen über den Bot an.
+
+**Technische Probleme**
+
+* {self.prefix}bug: Meldet einen Fehler.
+* {self.prefix}support: Kontaktiert den Support.
+
+**Feedback**
+
+* {self.prefix}feedback: Sendet Feedback an den Entwickler.
+
+
+**Anpassen**
+
+Du kannst den Code des Bots an deine Bedürfnisse anpassen. Hier sind einige Möglichkeiten:
+
+* Füge weitere Befehle hinzu, um auf spezifische Fragen oder Probleme zu antworten.
+* Ändere die Nachrichten, die der Bot sendet.
+* Füge weitere Funktionen hinzu, z. B. die Möglichkeit, Tickets zu erstellen oder den Status von Tickets zu verfolgen.
+
+**Beispiel**
+
+Hier ist ein Beispiel für einen Befehl, der auf allgemeine Fragen antwortet:
+
+python
+@self.command(name="info")
+async def info(self, ctx):
+    await ctx.send(f"Der Support-Bot ist ein Bot, der Antworten auf allgemeine Fragen und Hilfestellung bei technischen Problemen bietet.")
+
+
+**Ausführen**
+
+Um den Bot auszuführen, musst du ihn zuerst kompilieren. Öffne dazu eine Konsole und navigiere zum Ordner, in dem der Code gespeichert ist. Gib dann den folgenden Befehl ein:
+
+
+python -m pip install -r requirements.txt
+python main.py
